@@ -54,8 +54,8 @@ public class MailCreateTest {
 			driver.navigate().refresh();
 			Thread.sleep(10000);
 			// driver.findElement(By.id("add_email_account")).click();
-			driver.navigate().refresh();
-			Thread.sleep(5000);
+//			driver.navigate().refresh();
+//			Thread.sleep(5000);
 
 			// A "base url", used by selenium to resolve relative URLs
 			String baseUrl = "http://inseltech.com.mx:2082";
@@ -64,19 +64,10 @@ public class MailCreateTest {
 			// as during execution exception might occur if the element is not
 			// enabled .Selenium handles this situation. Only in this case we
 			// use selenium rest of the scripts webdriver api
-			Selenium selenium = new WebDriverBackedSelenium(driver, baseUrl);
-			try {
-				selenium.type("id=add_email_account", defaultUser + i);
-			} catch (Exception e) {
-				// TODO: handle exception
-				driver.navigate().refresh();
-				Thread.sleep(5000);
-			}
 
 			// driver.findElement(By.id("add_email_account")).sendKeys(defaultUser
 			// + i);
 
-			
 			// Generate Random password
 
 			MyStringRandomGen msr = new MyStringRandomGen();
@@ -89,33 +80,49 @@ public class MailCreateTest {
 				// Renter the password
 				driver.findElement(By.id("add_email_password2")).sendKeys(password);
 				Thread.sleep(5000);
+				Selenium selenium = new WebDriverBackedSelenium(driver, baseUrl);
+				try {
+					selenium.type("id=add_email_account", defaultUser + i);
+				} catch (Exception e) {
+					// TODO: handle exception
+					driver.navigate().refresh();
+					Thread.sleep(5000);
+				}
 				// Clicl on redio button
 				driver.findElement(By.id("quota_unlimited")).click();
 				Thread.sleep(5000);
 				// Click on Add Email button
 				driver.findElement(By.id("add_email_create")).click();
 				Thread.sleep(20000);
-				System.out.println("Successfully created email for user:"+ defaultUser + i);
+				System.out.println("Successfully created email for user:" + defaultUser + i);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 				System.out.println("");
-			}finally {
-				driver.navigate().refresh();
-				Thread.sleep(5000);
-				driver.findElement(By.id("add_email_password1")).sendKeys(password);
-				Thread.sleep(5000);
-				// Renter the password
-				driver.findElement(By.id("add_email_password2")).sendKeys(password);
-				Thread.sleep(5000);
-				// Clicl on redio button
-				driver.findElement(By.id("quota_unlimited")).click();
-				Thread.sleep(5000);
-				// Click on Add Email button
-				driver.findElement(By.id("add_email_create")).click();
-				Thread.sleep(20000);
-				System.out.println("Successfully created email for user:"+ defaultUser + i);
-				
+			} finally {
+//				driver.navigate().refresh();				
+//				Thread.sleep(5000);driver.findElement(By.id("add_email_password1")).sendKeys(password);
+//				Thread.sleep(5000);				
+//				// Renter the password
+//				driver.findElement(By.id("add_email_password2")).sendKeys(password);
+//				Thread.sleep(5000);
+//				// Clicl on redio button
+//				driver.findElement(By.id("quota_unlimited")).click();
+//				Thread.sleep(5000);
+//
+//				Selenium selenium = new WebDriverBackedSelenium(driver, baseUrl);
+//				try {
+//					selenium.type("id=add_email_account", defaultUser + i);
+//				} catch (Exception e) {
+//					// TODO: handle exception
+//					driver.navigate().refresh();
+//					Thread.sleep(5000);
+//				}
+//				// Click on Add Email button
+//				driver.findElement(By.id("add_email_create")).click();
+//				Thread.sleep(20000);
+//				System.out.println("*********Successfully created email for user:" + defaultUser + i);
+
 			}
 
 			// defaultUser
